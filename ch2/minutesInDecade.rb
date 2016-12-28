@@ -1,0 +1,1 @@
+puts 'There are ' + ((10/1)*(365/1)*(24/1)*(60/1)).to_s + ' minutes in a decade'
