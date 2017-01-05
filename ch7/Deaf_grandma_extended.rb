@@ -7,14 +7,16 @@ request =  ''
 while request != 'BYE'
 	request = gets.chomp
 	if request == 'BYE'
+		puts 'HUH?! SPEAK UP SONNY!'
 		request = gets.chomp
 		if request == 'BYE'
+			puts 'HUH?! SPEAK UP SONNY!'
 			request = gets.chomp
 			if request == 'BYE'
 				break
-				end
-				end
-				end
+			end
+		end
+	end
 	if request == request.upcase
 		random_year = 1938
 		puts 'No, not since ' + random_year.to_s
