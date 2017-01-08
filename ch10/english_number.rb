@@ -1,103 +1,71 @@
-def english_number number
-	if number < 0 
-		return 'Please enter a number that isn\'t negative.'
-	elsif number == 0
-		return 'zero'
-	elsif number > 9999
-		return 'Please enter a number that is less than 9999.'
-	else
-		
-		recursive_english_number number, '', 1000, 1
+def english some_number
+	recursive_english some_number
+end
+
+
+def find digit
+	digits = [[1, 'one'], [2, 'two'], [3, 'three'], 
+				 [4, 'four'], [5, 'five'], [6, 'six'], 
+				 [7, 'seven'], [8, 'eight'], [9, 'nine'], [10, 'ten'], 
+				 [11, 'eleven'], [12, 'twelve'], [13, 'thirteen'], 
+				 [14, 'fourteen'], [15, 'fifteen'], [16, 'sixteen'], 
+				 [17, 'seventeen'], [18, 'eighteen'], [19, 'nineteen'], 
+				 [20, 'twenty'], [30, 'thirty'], 
+				 [40, 'forty'], [50, 'fifty'], [60, 'sixty'], 
+				 [70, 'seventy'], [80, 'eighty'], [90, 'ninety']]
+	lens = 0
+			while lens <= 100
+				if digits [lens][0] == digit
+					digit = digits[lens][1]
+					break
+				end
+				lens += 1
+			end
+	digit
+end
+
+
+def recursive_english number
+	thousand = 1000
+	million	 = thousand * 1000
+	billion	 = million * 1000
+	trillion = billion * 1000
+	if number < 20
+		lens = 0
+		if number < 20
+			puts = find number
+		end
+	elsif number < 100
+		if number%10 == 0
+			puts = find number
+		else
+			puts = (find((number/10)*10))+'-'+find(number%10)
+		end
+	elsif number < thousand
+		if number%100 == 0
+			puts ((find((number/100))).to_s + ' hundred')
+		else
+			puts ((find((number/100))).to_s + ' hundred and ' + (recursive_english(number%100)).to_s)
+		end
+	elsif number < million
+		if number%thousand == 0
+			puts ((recursive_english(number/thousand)).to_s + ' thousand')
+		else
+			puts ((recursive_english(number/thousand)).to_s + ' thousand, ' + (recursive_english(number%thousand)).to_s)
+		end
+	elsif number < billion
+		if number%million == 0
+			puts ((recursive_english(number/million)).to_s + ' million')
+		else
+			puts ((recursive_english(number/million)).to_s + ' million, ' + (recursive_english(number%million)).to_s)
+		end
+	elsif number < trillion
+		if number%billion == 0
+			puts ((recursive_english(number/billion)).to_s + ' billion')
+		else
+			puts ((recursive_english(number/billion)).to_s + ' billion, ' + (recursive_english(number%billion)).to_s)
+		end
 	end
 end
-def recursive_english_number number, string, item, oro
-	ones_place = ['one', 'two', 'three',
-				  'four', 'five', 'six',
-				  'seven', 'eight', 'nine']
-	tens_place = ['ten', 'twenty', 'thirty',
-				  'forty', 'fifty', 'sixty',
-				  'seventy', 'eighty', 'ninety']
-	teenagers = [[11, 'eleven'], [12, 'twelve'], [13, 'thirteen'],
-				[14, 'fourteen'], [15, 'fifteen'], [16, 'sixteen'],
-				[17, 'seventeen'], [18, 'eighteen'], [19, 'nineteen']]
-	item_list = ['hundred', 'thousand']
-	if number == 0
-		puts string
-	else
-		if number/ 1000 > 99
-			puts test2 = number.split('').map(&:to_i)
-			test3 = test2[0]
-			string = string + ' ' + ones_place[(test3 - 1)] + 'hundred'
-			test2 = test2.pop(test2.length)
-			number = test2.join()
-			recursive_english_number number, string, item, oro
-		elsif number/ 1000 > 9
-			test2 = number.split('').map(&:to_i)
-			test3 = test2[0]
-				if test2.pop(test2.length) < 1000
-					string = string + ' ' + tens_place[(test3 - 1)] + 'thousand'
-					test2 = test2.pop(test2.length-1)
-					number = test2.join()
-					recursive_english_number number, string, item, oro
-				else
-					string = string + ' ' + tens_place[(test3 - 1)]
-					test2 = test2.pop(test2.length)
-					number = test2.join()
-					recursive_english_number number, string, item, oro
-				end
-		end
-		if number > item && number > 99
-			test = -1
-			while number/item >= 1
-				test = test + 1
-				number = number - item
-			end
-			if test != -1
-				string = string + ' ' + ones_place [test] + ' ' + item_list[oro]
-				item = item/10
-				oro = oro - 1
-				recursive_english_number number, string, item, oro
-			end
-		elsif number > 10 && number < 20
-				test = 8
-				while true
-					if (teenagers[test][0]) == number
-						string = string + ' '+ teenagers[test][1]
-						number = number - (teenagers[test][0])
-						break
-					end
-					test = test - 1
-				end
-				recursive_english_number number, string, item, oro
-		elsif number > 9
-			test = -1
-			while number/item >= 1
-				test = test + 1
-				number = number - item
-			end
-			if test != -1
-				string = string + ' ' + tens_place[test]
-				item = item/10
-				recursive_english_number number, string, item, oro
-			end
-		elsif number > 0
-			test = -1
-			while number/item >= 1
-				test = test + 1
-				number = number - item
-			end
-			if test != -1
-				string = string + ' ' + ones_place[test]
-				item = item/10
-				recursive_english_number number, string, item, oro
-			end			
-		else 
-			item = item/10
-			oro = oro - 1
-			recursive_english_number number, string, item, oro
-			end
-		end
-end
 
-
-english_number 9999
+english 9000

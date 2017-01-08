@@ -20,7 +20,4 @@ def recursive_sort unsorted_array, sorted_array
 	end
 end	
 
-test = ['1', '2', '3', '4']
-test -= [test [2]]
-puts test.join()
 sort ['for', 'he', 'is', 'a', 'jolly', 'good', 'fellow']
