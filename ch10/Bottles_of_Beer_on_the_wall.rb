@@ -75,15 +75,15 @@ end
 
 def recursive_bottles bottles
 	if bottles == 2
-		puts (english_number bottles).to_s + ' bottles of beer on the wall, ' + (english_number bottles).to_s + ' bottles of beer.'
+		puts (english_number bottles).to_s.upcase + ' bottles of beer on the wall, ' + (english_number bottles).to_s + ' bottles of beer.'
 		puts 'Take one down and pass it around, ' + (english_number (bottles - 1)).to_s + ' bottle of Beer on the wall'
 		bottles = bottles - 1
-		puts (english_number bottles).to_s + ' bottle of beer on the wall, ' + (english_number bottles).to_s + ' bottle of beer.'
+		puts (english_number bottles).to_s.upcase + ' bottle of beer on the wall, ' + (english_number bottles).to_s + ' bottle of beer.'
 		puts 'Take one down and pass it around, ' + ' no more bottles of Beer on the wall'
 		puts 'No more bottles of beer on the wall, no more bottles of beer.'
 		puts 'Go to the store and buy some more, ninety-nine bottles of Beer on the wall.'
 	else
-		puts (english_number bottles).to_s + ' bottles of beer on the wall, ' + (english_number bottles).to_s + ' bottles of beer.'
+		puts (english_number bottles).to_s.upcase + ' bottles of beer on the wall, ' + (english_number bottles).to_s + ' bottles of beer.'
 		puts 'Take one down and pass it around, ' + (english_number (bottles - 1)).to_s + ' bottles of Beer on the wall'
 		recursive_bottles (bottles-1)
 	end
